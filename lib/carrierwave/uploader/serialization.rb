@@ -8,9 +8,10 @@ module CarrierWave
     module Serialization
       extend ActiveSupport::Concern
 
-      def serializable_hash
-        {"url" => url}.merge Hash[versions.map { |name, version| [name, { "url" => version.url }] }]
-      end
+      # def serializable_hash(options=nil)
+      #   options ||= {}
+      #   {"url" => url}.merge Hash[versions.map { |name, version| [name, { "url" => version.url }] }]
+      # end
 
       def as_json(options=nil)
         Hash[mounted_as || "uploader", serializable_hash]
